@@ -5,6 +5,11 @@ _Make your cobold move faster 🦎 <sup>(or slower, if you will)</sup> :)_
 
 Adds ability to run using `Left Shift`.
 
+## Download and install
+1. Go to [releases](https://github.com/Extrudeous-101/DragnSprint/releases) and download latest release (you only need 
+Drag.nSprint.zip archive).
+2. Move `Drag'nSprint` folder to `BepInEx\plugins` folder inside your game installation.
+
 ## Requirements
 - [Drag'n Wash ModFramework](https://github.com/TomXV/dragnwash-modframework) ([install guide](https://github.com/TomXV/dragnwash-modframework/wiki/For-players))
 

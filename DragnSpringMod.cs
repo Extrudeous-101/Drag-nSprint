@@ -23,7 +23,7 @@ namespace Extrudeous.DragnSprint
 
         private const string SPRINTING_PATCH = "Sprinting";
     
-        public ConfigEntry<bool> _sprint;
+        public ConfigEntry<bool> EnableSprint;
         public ConfigEntry<float> SprintSpeed;
     
         private void Awake()
@@ -41,10 +41,10 @@ namespace Extrudeous.DragnSprint
             });
             Logger.LogDebug("Registered mod.");
             
-            _sprint = Config.Bind("General", "Make me sprint", false, "Makes you sprint 🤯.");
-            GameOptions.AddToggle(GUID + ".sprint", "Make me sprint",
-                getSaved: () => _sprint.Value,
-                save: value => _sprint.Value = value);
+            EnableSprint = Config.Bind("General", "Use sprint", true, "Makes you sprint (◉ _ ◉).");
+            GameOptions.AddToggle(GUID + ".sprint", "Use sprint",
+                getSaved: () => EnableSprint.Value,
+                save: value => EnableSprint.Value = value);
             
             SprintSpeed = Config.Bind("General", "Sprint speed", 1.5f, "Sets sprint speed.");
             // Can't create GameOptions slider because ModFramework doesn't support sliders

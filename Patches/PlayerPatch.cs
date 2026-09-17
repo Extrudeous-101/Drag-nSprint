@@ -1,4 +1,6 @@
 using System;
+using BepInEx;
+using BepInEx.Configuration;
 using HarmonyLib;
 using UnityEngine;
 
@@ -12,7 +14,6 @@ namespace Extrudeous.DragnSprint.Patches
     {
         public const string TYPENAME = nameof(WalkingMovementMode);
         public const string METHODNAME = nameof(T.MovementUpdate);
-        
         static AccessTools.FieldRef<T, float> walkingMovementSpeedRef =
             AccessTools.FieldRefAccess<T, float>("walkingMovementSpeed");
 
@@ -21,11 +22,11 @@ namespace Extrudeous.DragnSprint.Patches
         {
             try
             {
-                if (!DragnSpringMod.Singleton._sprint.Value)
+                if (!DragnSpringMod.Singleton.EnableSprint.Value) return true;
+                if (!UnityInput.Current.GetKey(KeyCode.LeftShift))
                 {
                     if (_originalState != 0f) walkingMovementSpeedRef(__instance) = _originalState;
                     _originalState = 0f;
-                    DragnSpringMod.ManualLog.LogDebug($"Changed speed to {walkingMovementSpeedRef(__instance)}.");
                     return true;
                 }
 
@@ -33,7 +34,6 @@ namespace Extrudeous.DragnSprint.Patches
                 
                 _originalState = walkingMovementSpeedRef(__instance);
                 walkingMovementSpeedRef(__instance) = _originalState * DragnSpringMod.Singleton.SprintSpeed.Value;
-                DragnSpringMod.ManualLog.LogDebug($"Changed speed to {walkingMovementSpeedRef(__instance)}.");
             }
             catch (Exception ex)
             {

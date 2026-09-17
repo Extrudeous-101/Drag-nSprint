@@ -1,5 +1,5 @@
 # Drag'n Sprint
-_Make your cobold move faster 🦎 <sup>(or slower, if you will)</sup> :)_
+_Make your kobold move faster 🦎 <sup>(or slower, if you will)</sup> :)_
 > [!NOTE]
 > I made this mod just for fun and i'm not a good mod dev. Maybe it'll break something somewhere
 

@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Extrudeous.DragnSprint</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Drag'nSprint</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Set DragnWashGameDir env variable to set Game directory (or just uncomment this line and change path) -->
+    <!-- <DragnWashGameDir>some/path</DragnWashGameDir> -->
+    <!-- Used https://github.com/KrazenLabs/dnw-modloader as a reference for this csproj file, check this project as well -->
+    <DragnWashGameDir Condition="!HasTrailingSlash('$(DragnWashGameDir)')">$(DragnWashGameDir)\</DragnWashGameDir>
+    <GameManagedDir>$(DragnWashGameDir)DragNWash_Data\Managed\</GameManagedDir>
+    <GameBepInEx>$(DragnWashGameDir)BepInEx\</GameBepInEx>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(GameBepInEx)\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(GameManagedDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(GameBepInEx)\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>$(GameBepInEx)\core\BepInEx.Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="DragNWash.ModFramework">
+      <HintPath>$(GameBepInEx)\plugins\DragNWash.ModFramework\DragNWash.ModFramework.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="DragNWash.ModFramework.Assets">
+      <HintPath>$(GameBepInEx)\plugins\DragNWash.ModFramework.Assets\DragNWash.ModFramework.Assets.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="DragNWash.ModFramework.Dialogue">
+      <HintPath>$(GameBepInEx)\plugins\DragNWash.ModFramework.Dialogue\DragNWash.ModFramework.Dialogue.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="DragNWash.ModFramework.Inspector">
+      <HintPath>$(GameBepInEx)\plugins\DragNWash.ModFramework.Inspector\DragNWash.ModFramework.Inspector.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="DragNWash.ModFramework.Saves">
+      <HintPath>$(GameBepInEx)\plugins\DragNWash.ModFramework.Saves\DragNWash.ModFramework.Saves.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="DragNWash.ModFramework.Text">
+      <HintPath>$(GameBepInEx)\plugins\DragNWash.ModFramework.Text\DragNWash.ModFramework.Text.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="DragNWash.ModFramework.ToolWindow">
+      <HintPath>$(GameBepInEx)\plugins\DragNWash.ModFramework.ToolWindow\DragNWash.ModFramework.ToolWindow.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>$(GameBepInEx)\core\Mono.Cecil.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(GameManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(GameManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

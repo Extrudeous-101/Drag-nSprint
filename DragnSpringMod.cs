@@ -25,6 +25,7 @@ namespace Extrudeous.DragnSprint
     
         public ConfigEntry<bool> EnableSprint;
         public ConfigEntry<float> SprintSpeed;
+        public ConfigEntry<KeyCode> SprintButton;
     
         private void Awake()
         {
@@ -48,6 +49,10 @@ namespace Extrudeous.DragnSprint
             
             SprintSpeed = Config.Bind("General", "Sprint speed", 1.5f, "Sets sprint speed.");
             // Can't create GameOptions slider because ModFramework doesn't support sliders
+            
+            SprintButton = Config.Bind("General", "Sprint button", KeyCode.LeftShift, "Sets sprint button. \n" +
+                "(and yes, we can't change this button selector)");
+            // Can't create GameOptions button selector because this game doesn't have key mapping
             
             Logger.LogDebug("Registered settings.");
             

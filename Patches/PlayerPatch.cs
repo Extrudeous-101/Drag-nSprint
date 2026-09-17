@@ -23,7 +23,7 @@ namespace Extrudeous.DragnSprint.Patches
             try
             {
                 if (!DragnSpringMod.Singleton.EnableSprint.Value) return true;
-                if (!UnityInput.Current.GetKey(KeyCode.LeftShift))
+                if (!UnityInput.Current.GetKey(DragnSpringMod.Singleton.SprintButton.Value))
                 {
                     if (_originalState != 0f) walkingMovementSpeedRef(__instance) = _originalState;
                     _originalState = 0f;

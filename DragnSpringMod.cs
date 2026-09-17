@@ -1,30 +1,44 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using DragNWash.ModFramework;
-using DragNWash.ModFramework.Text;
 using UnityEngine;
 
-namespace Extrudeous.DragnSprint;
-
-[BepInPlugin(GUID, MOD_NAME, "1.0")]
-[BepInDependency(ModFramework.Guid, BepInDependency.DependencyFlags.HardDependency)]
-[BepInDependency(GameText.Guid, BepInDependency.DependencyFlags.HardDependency)]
-public class DragnSpringMod : BaseUnityPlugin
+namespace Extrudeous.DragnSprint
 {
-    public const string GUID = "extrudeous.dragnsprint";
-    public const string MOD_NAME = "Drag'n Sprint";
-    public const string MOD_DESCRIPTION = "Adds sprint to the player.";
-    public const string MOD_WEBSITE = "https://github.com/Extrudeous-101/DragnSprint";
-    public static readonly string[] MOD_AUTHORS = new[] { "Extrudeous" };
-    
-    private void Awake()
+    [BepInPlugin(GUID, MOD_NAME, "1.0")]
+    [BepInDependency(ModFramework.Guid, BepInDependency.DependencyFlags.HardDependency)]
+    public class DragnSpringMod : BaseUnityPlugin
     {
-        ModFramework.Register(new ModInfo
+        public static DragnSpringMod Singleton;
+        
+        public const string GUID = "extrudeous.dragnsprint";
+        public const string MOD_NAME = "Drag'n Sprint";
+        public const string MOD_DESCRIPTION = "Adds sprint to the player.";
+        public const string MOD_WEBSITE = "https://github.com/Extrudeous-101/DragnSprint";
+        public static readonly string[] MOD_AUTHORS = new[] { "Extrudeous" };
+    
+        public ConfigEntry<bool> _sprint;
+    
+        private void Awake()
         {
-            Guid = GUID,
-            DisplayName = MOD_NAME,
-            Description = MOD_DESCRIPTION,
-            Authors = MOD_AUTHORS,
-            Website = MOD_WEBSITE
-        });
+            Singleton = !Singleton ? this : Singleton;
+            ModFramework.Register(new ModInfo
+            {
+                Guid = GUID,
+                DisplayName = MOD_NAME,
+                Description = MOD_DESCRIPTION,
+                Authors = MOD_AUTHORS,
+                Website = MOD_WEBSITE
+            });
+        
+            _sprint = Config.Bind("General", "Make me sprint", false, "Makes you sprint 🤯.");
+        
+            GameOptions.AddToggle(GUID + ".sprint", "Make me sprint",
+                getSaved: () => _sprint.Value,
+                save: value => _sprint.Value = value);
+        
+            Logger.LogInfo("Sprint ready.");
+        
+        }
     }
 }

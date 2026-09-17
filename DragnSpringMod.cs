@@ -22,6 +22,7 @@ namespace Extrudeous.DragnSprint
         public static readonly string[] MOD_AUTHORS = new[] { "Extrudeous" };
     
         public ConfigEntry<bool> _sprint;
+        public ConfigEntry<float> SprintSpeed;
     
         private void Awake()
         {
@@ -36,11 +37,13 @@ namespace Extrudeous.DragnSprint
             });
         
             _sprint = Config.Bind("General", "Make me sprint", false, "Makes you sprint 🤯.");
-        
             GameOptions.AddToggle(GUID + ".sprint", "Make me sprint",
                 getSaved: () => _sprint.Value,
                 save: value => _sprint.Value = value);
-        
+            
+            SprintSpeed = Config.Bind("General", "Sprint speed", 1.5f, "Sets sprint speed.");
+            // Can't create GameOptions slider because ModFramework doesn't support sliders
+            
             Logger.LogInfo("Registered mod.");
             ManualLog = Logger;
             

@@ -28,7 +28,7 @@ namespace Extrudeous.DragnSprint.Patches
             if (_originalState == 0f)
             {
                 _originalState = walkingMovementSpeedRef(__instance);
-                walkingMovementSpeedRef(__instance) = _originalState * 2;
+                walkingMovementSpeedRef(__instance) = _originalState * DragnSpringMod.Singleton.SprintSpeed.Value;
             }
             
             return true;

@@ -20,6 +20,8 @@ namespace Extrudeous.DragnSprint
         public const string MOD_DESCRIPTION = "Adds sprint to the player.";
         public const string MOD_WEBSITE = "https://github.com/Extrudeous-101/DragnSprint";
         public static readonly string[] MOD_AUTHORS = new[] { "Extrudeous" };
+
+        private const string SPRINTING_PATCH = "Sprinting";
     
         public ConfigEntry<bool> _sprint;
         public ConfigEntry<float> SprintSpeed;
@@ -27,6 +29,8 @@ namespace Extrudeous.DragnSprint
         private void Awake()
         {
             Singleton = !Singleton ? this : Singleton;
+            ManualLog = Logger;
+            
             ModFramework.Register(new ModInfo
             {
                 Guid = GUID,
@@ -35,7 +39,8 @@ namespace Extrudeous.DragnSprint
                 Authors = MOD_AUTHORS,
                 Website = MOD_WEBSITE
             });
-        
+            Logger.LogDebug("Registered mod.");
+            
             _sprint = Config.Bind("General", "Make me sprint", false, "Makes you sprint 🤯.");
             GameOptions.AddToggle(GUID + ".sprint", "Make me sprint",
                 getSaved: () => _sprint.Value,
@@ -44,17 +49,18 @@ namespace Extrudeous.DragnSprint
             SprintSpeed = Config.Bind("General", "Sprint speed", 1.5f, "Sets sprint speed.");
             // Can't create GameOptions slider because ModFramework doesn't support sliders
             
-            Logger.LogInfo("Registered mod.");
-            ManualLog = Logger;
+            Logger.LogDebug("Registered settings.");
             
             var harmony = new Harmony(GUID+".patches");
-            if (GameHooks.Require(GUID+".patches", "Sprinting", PlayerPatch.TYPENAME, PlayerPatch.METHODNAME))
+            if (GameHooks.Require(GUID+".patches", SPRINTING_PATCH, PlayerPatch.TYPENAME, PlayerPatch.METHODNAME))
             {
                 harmony.PatchAll(typeof(PlayerPatch));
+                DragnSpringMod.ManualLog.LogDebug($"Applied patch {SPRINTING_PATCH}");
             }
             harmony.PatchAll();
             
             Logger.LogInfo("Mod initialized!");
         }
+
     }
 }

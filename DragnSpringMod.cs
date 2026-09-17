@@ -1,6 +1,8 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
+using BepInEx.Logging;
 using DragNWash.ModFramework;
+using HarmonyLib;
 using UnityEngine;
 
 namespace Extrudeous.DragnSprint
@@ -10,6 +12,7 @@ namespace Extrudeous.DragnSprint
     public class DragnSpringMod : BaseUnityPlugin
     {
         public static DragnSpringMod Singleton;
+        public static ManualLogSource ManualLog;
         
         public const string GUID = "extrudeous.dragnsprint";
         public const string MOD_NAME = "Drag'n Sprint";
@@ -37,8 +40,13 @@ namespace Extrudeous.DragnSprint
                 getSaved: () => _sprint.Value,
                 save: value => _sprint.Value = value);
         
-            Logger.LogInfo("Sprint ready.");
-        
+            Logger.LogInfo("Registered mod.");
+            ManualLog = Logger;
+            
+            var harmony = new Harmony(GUID+".patches");
+            harmony.PatchAll();
+            
+            Logger.LogInfo("Mod initialized!");
         }
     }
 }

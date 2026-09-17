@@ -3,15 +3,20 @@ using UnityEngine;
 
 namespace Extrudeous.DragnSprint.Patches
 {
-    [HarmonyPatch(typeof(WalkingMovementMode))]
-    [HarmonyPatch(nameof(WalkingMovementMode.MovementUpdate))]
+    using T = WalkingMovementMode;
+
+    [HarmonyPatch(typeof(T))]
+    [HarmonyPatch(METHODNAME)]
     class PlayerPatch
     {
-        static AccessTools.FieldRef<WalkingMovementMode, float> walkingMovementSpeedRef =
-            AccessTools.FieldRefAccess<WalkingMovementMode, float>("walkingMovementSpeed");
+        public const string TYPENAME = nameof(WalkingMovementMode);
+        public const string METHODNAME = nameof(T.MovementUpdate);
+        
+        static AccessTools.FieldRef<T, float> walkingMovementSpeedRef =
+            AccessTools.FieldRefAccess<T, float>("walkingMovementSpeed");
 
         private static float _originalState;
-        static bool Prefix(WalkingMovementMode __instance)
+        static bool Prefix(T __instance)
         {
             if (!DragnSpringMod.Singleton._sprint.Value)
             {

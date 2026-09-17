@@ -2,6 +2,7 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using DragNWash.ModFramework;
+using Extrudeous.DragnSprint.Patches;
 using HarmonyLib;
 using UnityEngine;
 
@@ -44,6 +45,10 @@ namespace Extrudeous.DragnSprint
             ManualLog = Logger;
             
             var harmony = new Harmony(GUID+".patches");
+            if (GameHooks.Require(GUID+".patches", "Sprinting", PlayerPatch.TYPENAME, PlayerPatch.METHODNAME))
+            {
+                harmony.PatchAll(typeof(PlayerPatch));
+            }
             harmony.PatchAll();
             
             Logger.LogInfo("Mod initialized!");

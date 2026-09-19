@@ -51,8 +51,10 @@ namespace Extrudeous.DragnSprint
                 getSaved: () => EnableSprint.Value,
                 save: value => EnableSprint.Value = value);
             
-            SprintSpeed = Config.Bind("General", "Sprint speed", 1.5f, "Sets sprint speed.");
-            // Can't create GameOptions slider because ModFramework doesn't support sliders
+            SprintSpeed = Config.Bind("General", "Sprint speed modifier", 1.5f, "Sets sprint speed modifier.");
+            GameOptions.AddSlider(GUID+".sprintSpeed", "Sprint speed modifier", 0.01f, 0.05f, 5f,
+                getSaved: () => SprintSpeed.Value,
+                save: value => SprintSpeed.Value = value);
             
             SprintButton = Config.Bind("General", "Sprint button", KeyCode.LeftShift, "Sets sprint button. \n" +
                 "(and yes, we can't change this button selector)");

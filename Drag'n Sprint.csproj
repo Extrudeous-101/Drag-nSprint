@@ -72,5 +72,7 @@
       <Private>false</Private>
     </Reference>
   </ItemGroup>
-
+  <Target Name="CopyToGame" AfterTargets="Build" Condition="Exists('$(DragnWashGameDir)')">
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(DragnWashGameDir)\BepInEx\plugins\$(AssemblyName)\$(AssemblyName).dll.new" />
+  </Target>
 </Project>

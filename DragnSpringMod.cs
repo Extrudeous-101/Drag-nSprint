@@ -19,6 +19,7 @@ namespace Extrudeous.DragnSprint
         public const string MOD_NAME = "Drag'n Sprint";
         public const string MOD_DESCRIPTION = "Adds sprint to the player.";
         public const string MOD_WEBSITE = "https://github.com/Extrudeous-101/DragnSprint";
+        public const string MOD_UPDATE_REPO = "Extrudeous-101/DragnSprint";
         public static readonly string[] MOD_AUTHORS = new[] { "Extrudeous" };
 
         private const string SPRINTING_PATCH = "Sprinting";
@@ -38,7 +39,8 @@ namespace Extrudeous.DragnSprint
                 DisplayName = MOD_NAME,
                 Description = MOD_DESCRIPTION,
                 Authors = MOD_AUTHORS,
-                Website = MOD_WEBSITE
+                Website = MOD_WEBSITE,
+                UpdateRepository = MOD_UPDATE_REPO
             });
             Logger.LogDebug("Registered mod.");
             

@@ -11,9 +11,9 @@ Drag.nSprint.zip archive).
 2. Move `Drag'nSprint` folder to `BepInEx\plugins` folder inside your game installation.
 
 ## Requirements
-- [Drag'n Wash ModFramework](https://github.com/TomXV/dragnwash-modframework) ([install guide](https://github.com/TomXV/dragnwash-modframework/wiki/For-players))
+- [Drag'n Wash ModFramework v1.3+](https://github.com/TomXV/dragnwash-modframework) ([install guide](https://github.com/TomXV/dragnwash-modframework/wiki/For-players))
 
 ## Features
 - Sprinting (Default button: `Left Shift`)
-- Changing sprint speed (in mod settings)
+- Changing sprint speed modifier (now in game options)
 - Rebinding sprint button (yes, it's very bad, but i can't change that)

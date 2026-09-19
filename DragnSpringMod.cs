@@ -46,8 +46,8 @@ namespace Extrudeous.DragnSprint
             });
             Logger.LogDebug("Registered mod.");
             
-            EnableSprint = Config.Bind("General", "Use sprint", true, "Makes you sprint (◉ _ ◉).");
-            GameOptions.AddToggle(GUID + ".sprint", "Use sprint",
+            EnableSprint = Config.Bind("General", "Enable sprint", true, "Makes you sprint (◉ _ ◉).");
+            GameOptions.AddToggle(GUID + ".sprint", "Enable sprint",
                 getSaved: () => EnableSprint.Value,
                 save: value => EnableSprint.Value = value);
             

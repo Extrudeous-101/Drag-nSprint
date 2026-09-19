@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Extrudeous.DragnSprint
 {
     [BepInPlugin(GUID, MOD_NAME, "1.0")]
-    [BepInDependency(ModFramework.Guid, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(ModFramework.Guid, "1.3.0")]
     public class DragnSpringMod : BaseUnityPlugin
     {
         public static DragnSpringMod Singleton;

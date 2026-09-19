@@ -27,6 +27,8 @@ namespace Extrudeous.DragnSprint
         public ConfigEntry<bool> EnableSprint;
         public ConfigEntry<float> SprintSpeed;
         public ConfigEntry<KeyCode> SprintButton;
+        
+        Harmony _harmony = new Harmony(GUID+".patches");
     
         private void Awake()
         {
@@ -58,16 +60,19 @@ namespace Extrudeous.DragnSprint
             
             Logger.LogDebug("Registered settings.");
             
-            var harmony = new Harmony(GUID+".patches");
             if (GameHooks.Require(GUID+".patches", SPRINTING_PATCH, PlayerPatch.TYPENAME, PlayerPatch.METHODNAME))
             {
-                harmony.PatchAll(typeof(PlayerPatch));
+                _harmony.PatchAll(typeof(PlayerPatch));
                 DragnSpringMod.ManualLog.LogDebug($"Applied patch {SPRINTING_PATCH}");
             }
-            harmony.PatchAll();
+            _harmony.PatchAll();
             
             Logger.LogInfo("Mod initialized!");
         }
 
+        private void OnDestroy()
+        {
+            _harmony.UnpatchSelf();
+        }
     }
 }

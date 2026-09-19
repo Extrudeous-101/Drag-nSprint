@@ -4,6 +4,7 @@
     <TargetFramework>net472</TargetFramework>
     <RootNamespace>Extrudeous.DragnSprint</RootNamespace>
     <AssemblyName>Drag'nSprint</AssemblyName>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>

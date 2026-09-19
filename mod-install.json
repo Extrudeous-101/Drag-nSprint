@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "name": "Drag'n Sprint",
+  "version": "1.1.0",
+  "website": "https://github.com/Extrudeous-101/DragnSprint",
+  "plugins": [
+    "DragnSprint"
+  ],
+  "configFiles": [
+    "extrudeous.dragnsprint.cfg"
+  ],
+  "choices": [
+    {
+      "id": "extrudeous.dragnsprint.sprint",
+      "label": {
+        "en": "Enable sprint"
+      },
+      "config": {
+        "file": "extrudeous.dragnsprint.cfg",
+        "section": "General",
+        "key": "Enable sprint"
+      },
+      "options": [
+        {
+          "value": "true",
+          "name": "On"
+        },
+        {
+          "value": "false",
+          "name": "Off"
+        }
+      ],
+      "default": "On"
+    }
+  ]
+}

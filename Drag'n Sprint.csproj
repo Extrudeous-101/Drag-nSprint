@@ -73,6 +73,11 @@
       <Private>false</Private>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <None Update="mod-install.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Target Name="CopyToGame" AfterTargets="Build" Condition="Exists('$(DragnWashGameDir)')">
     <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(DragnWashGameDir)\BepInEx\plugins\$(AssemblyName)\$(AssemblyName).dll.new" />
   </Target>
